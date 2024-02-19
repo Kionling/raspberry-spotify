@@ -5,21 +5,15 @@ import spotipy
 import webbrowser
 import spotipy.util as util
 from json.decoder import JSONDecodeError
+from spotipy.oauth2 import SpotifyOAuth
 
-# username from terminal 
-username = sys.argv[1]
+scope = "user-library-read"
 
-# USER ID: 12102296866
+sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
 
+results = sp.current_user_saved_tracks()
+for idx, item in enumerate(results['items']):
+    track = item['track']
+    print(idx, track['artists'][0]['name'], " – ", track['name'])
 
-try:
-    token = util.prompt_for_user_token(username)
-except:
-    os.remove(f'.cache-{username}')
-    token = util.prompt_for_user_token(username)
-
-
-#spotify object
-    
-spotifyObject = spotipy.Spotify(auth=token)
-
+# os.remove('.cache')
