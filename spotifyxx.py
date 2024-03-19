@@ -1,14 +1,30 @@
 import os 
-import sys
-import json
+import sys 
 import spotipy
-import webbrowser
 import spotipy.util as util
-from json.decoder import JSONDecodeError
 from spotipy.oauth2 import SpotifyOAuth
+import tkinter as tk
+from tkinter import ttk
 
-scope = "user-read-playback-state"
+def get_current_track():
+    scope = "user-read-playback-state"
+    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
+    result = sp.current_playback(market='US', additional_types=('track'))
+    artists = [artist['name'] for artist in result.get('item').get('artists')]
+    artist_names = ', '.join(artists)
+    print(result.get('item').get('name'), '-', artist_names)
 
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
+root = tk.Tk()
+root.title("Spotify Current Track")
+song_info = tk.StringVar()
+song_info_label = ttk.Label(root, textvariable=song_info, font=('Arial', 20))
+song_info_label.pack(pady=20)
 
+<<<<<<< HEAD
 result = sp.current_playback(market=None, additional_types=None)
+=======
+
+get_current_track()
+    
+root.mainloop()
+>>>>>>> 52af272fa0cf61329fa10a4fce2d4b63cb70450b
