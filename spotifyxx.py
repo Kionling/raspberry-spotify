@@ -38,7 +38,7 @@ root.configure(bg=dark_background)
 
 # Song info label
 song_info = tk.StringVar()
-song_info_label = ttk.Label(root, textvariable=song_info, font=('Arial', 20), foreground=light_text, background=dark_background)
+song_info_label = ttk.Label(root, textvariable=song_info, font=('Arial', 20))
 song_info_label.pack(pady=20)
 # Album art label
 album_art_label = tk.Label(root)
