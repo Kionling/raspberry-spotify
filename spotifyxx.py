@@ -11,5 +11,4 @@ scope = "user-read-playback-state"
 
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
 
-result = sp.current_playback()
-print(result)
+result = sp.current_playback(market=None, additional_types=None)
