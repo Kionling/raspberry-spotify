@@ -5,6 +5,12 @@ import tkinter as tk
 from tkinter import ttk
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+import time
+
+def update_time():
+    current_time = time.strftime("%I:%M:%S:")
+    time_label.config(text=current_time)
+    root.after(1000, update_time)  # Call this function again in 1000 milliseconds (1 second)
 
 def get_current_track():
     scope = "user-read-playback-state"
@@ -35,6 +41,12 @@ root.title("Spotify Current Track")
 dark_background = "#121212"
 light_text = "#E0E0E0"
 root.configure(bg=dark_background)
+
+# Time label
+time_label = tk.Label(root, font=('Arial', 20), bg=dark_background, fg=light_text)
+time_label.pack(pady=20)
+update_time()  # Initial call to start updating the time
+
 
 # Song info label
 song_info = tk.StringVar()
