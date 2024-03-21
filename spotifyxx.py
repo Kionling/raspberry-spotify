@@ -2,7 +2,6 @@ import io
 import urllib.request
 from PIL import Image, ImageTk
 import tkinter as tk
-from tkinter import ttk
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import time
@@ -38,23 +37,29 @@ def get_current_track():
 
 root = tk.Tk()
 root.title("Spotify Current Track")
+root.minsize(1620, 780)
 dark_background = "#121212"
 light_text = "#E0E0E0"
 root.configure(bg=dark_background)
 
 # Time label
-time_label = tk.Label(root, font=('Arial', 20), bg=dark_background, fg=light_text)
+time_label = tk.Label(root, font=('Arial bold', 30), bg=dark_background, fg=light_text)
 time_label.pack(pady=20)
 update_time()  # Initial call to start updating the time
 
 
+
+
+
 # Song info label
 song_info = tk.StringVar()
-song_info_label = ttk.Label(root, textvariable=song_info, font=('Arial', 20))
+song_info_label = tk.Label(root, textvariable=song_info, font=('Arial', 20, ), bg=dark_background, fg=light_text)
 song_info_label.pack(pady=20)
 # Album art label
 album_art_label = tk.Label(root)
 album_art_label.pack(pady=20)
+
+
 
 get_current_track()  # Initial call to fetch and display the current track
 
