@@ -7,7 +7,7 @@ from spotipy.oauth2 import SpotifyOAuth
 import time
 
 def update_time():
-    current_time = time.strftime("%I:%M:%S:")
+    current_time = time.strftime("%I:%M:%S")
     time_label.config(text=current_time)
     root.after(1000, update_time)  # Call this function again in 1000 milliseconds (1 second)
 
@@ -42,24 +42,27 @@ dark_background = "#121212"
 light_text = "#E0E0E0"
 root.configure(bg=dark_background)
 
-# Time label
-time_label = tk.Label(root, font=('Arial bold', 30), bg=dark_background, fg=light_text)
-time_label.pack(pady=20)
+# Configure grid layout with flexible rows for vertical centering
+root.grid_rowconfigure(0, weight=1)  # Flexible space before labels
+root.grid_rowconfigure(1, weight=0)  # Minimal space, adjust if needed
+root.grid_rowconfigure(2, weight=0)  # Minimal space, adjust if needed
+root.grid_rowconfigure(3, weight=1)  # Flexible space after labels
+root.grid_columnconfigure(0, weight=1)
+root.grid_columnconfigure(1, weight=1)
+
+# Time label centered vertically
+time_label = tk.Label(root, font=('Arial bold', 100), bg=dark_background, fg=light_text)
+time_label.grid(row=1, column=0, sticky="ew", padx=20)
 update_time()  # Initial call to start updating the time
 
-
-
-
-
-# Song info label
+# Song info label centered vertically
 song_info = tk.StringVar()
-song_info_label = tk.Label(root, textvariable=song_info, font=('Arial', 20, ), bg=dark_background, fg=light_text)
-song_info_label.pack(pady=20)
+song_info_label = tk.Label(root, textvariable=song_info, font=('Arial', 20), bg=dark_background, fg=light_text)
+song_info_label.grid(row=2, column=0, sticky="ew", padx=20)
+
 # Album art label
-album_art_label = tk.Label(root)
-album_art_label.pack(pady=20)
-
-
+album_art_label = tk.Label(root, bg=dark_background)
+album_art_label.grid(row=0, column=1, rowspan=4, sticky="nesw", padx=20, pady=20)
 
 get_current_track()  # Initial call to fetch and display the current track
 
