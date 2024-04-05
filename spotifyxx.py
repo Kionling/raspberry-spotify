@@ -5,7 +5,7 @@ import tkinter as tk
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import time
-from weather import getweather
+from weather import getweather, getDescription
 import asyncio
 
 def update_time():
@@ -38,7 +38,7 @@ def get_current_track():
     root.after(5000, get_current_track)  # Refresh every 5000 milliseconds (5 seconds)
 
 weather = asyncio.run(getweather())
-print(f'weather: {weather}')
+description = asyncio.run(getDescription())
 
 root = tk.Tk()
 root.title("Spotify Current Track")
