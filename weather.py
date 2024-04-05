@@ -8,18 +8,17 @@ async def getweather():
     # fetch a weather forecast from a city
     # user_weather = input("Enter a city: ")
     # weather = await client.get(user_weather)
-
-    weather = await client.get("New York")
-
-    # returns the current day's forecast temperature (int)
-    
+    user_weather = input("Enter a city: ")
+    weather = await client.get(user_weather)
     print(weather.temperature)
     print(weather.description)
+    # returns the current day's forecast temperature (int)
+    return weather.temperature 
+  
     
 
 if __name__ == '__main__':
-  # see https://stackoverflow.com/questions/45600579/asyncio-event-loop-is-closed-when-getting-loop
-  # for more details
+  
   if os.name == 'nt':
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 

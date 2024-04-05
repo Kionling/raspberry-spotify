@@ -5,6 +5,8 @@ import tkinter as tk
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import time
+from weather import getweather
+import asyncio
 
 def update_time():
     current_time = time.strftime("%I:%M:%S")
@@ -35,6 +37,9 @@ def get_current_track():
     
     root.after(5000, get_current_track)  # Refresh every 5000 milliseconds (5 seconds)
 
+weather = asyncio.run(getweather())
+print(f'weather: {weather}')
+
 root = tk.Tk()
 root.title("Spotify Current Track")
 root.minsize(1620, 780)
@@ -49,7 +54,9 @@ root.grid_rowconfigure(2, weight=0)  # Minimal space, adjust if needed
 root.grid_rowconfigure(3, weight=1)  # Flexible space after labels
 root.grid_columnconfigure(0, weight=1)
 root.grid_columnconfigure(1, weight=1)
-
+# weather label 
+weather_label = tk.Label(root, text=weather, font=('Arial', 20), bg=dark_background, fg=light_text)
+weather_label.grid(row=3, column=0, sticky="ew", padx=20)
 # Time label centered vertically
 time_label = tk.Label(root, font=('Arial bold', 100), bg=dark_background, fg=light_text)
 time_label.grid(row=1, column=0, sticky="ew", padx=20)
