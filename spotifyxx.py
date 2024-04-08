@@ -7,6 +7,7 @@ from spotipy.oauth2 import SpotifyOAuth
 import time
 from weather import getweather
 import asyncio
+import threading 
 
 def update_time():
     current_time = time.strftime("%I:%M:%S")

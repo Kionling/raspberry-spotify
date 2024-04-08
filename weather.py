@@ -2,6 +2,8 @@ import python_weather
 import asyncio
 import os
 
+user_weather = input("Enter a city: ")
+
 
 async def getweather():
   # declare the client. the measuring unit used defaults to the metric system (celcius, km/h, etc.)
@@ -9,7 +11,6 @@ async def getweather():
     # fetch a weather forecast from a city
     # user_weather = input("Enter a city: ")
     # weather = await client.get(user_weather)
-    user_weather = input("Enter a city: ")
     weather = await client.get(user_weather)
     format_weather = f"{user_weather} : {weather.temperature}°F - {weather.description}"
     print(format_weather)
