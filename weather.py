@@ -11,18 +11,11 @@ async def getweather():
     # weather = await client.get(user_weather)
     user_weather = input("Enter a city: ")
     weather = await client.get(user_weather)
-    print(weather.temperature)
-
+    format_weather = f"{user_weather} : {weather.temperature}°F - {weather.description}"
+    print(format_weather)
     # returns the current day's forecast temperature (int)
-    return weather.temperature
+    return format_weather
   
-async def getDescription():
-  async with python_weather.Client(unit=python_weather.IMPERIAL) as client:
-    user_weather = input("Enter a city: ")
-    weather = await client.get(user_weather)
-
-    # returns the current day's forecast temperature (int)
-    return weather.description
   
   
   
@@ -35,3 +28,4 @@ if __name__ == '__main__':
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
   asyncio.run(getweather())
+  
