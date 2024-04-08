@@ -18,10 +18,6 @@ async def getweather():
     return format_weather
   
   
-  
-  
-  
-    
 
 if __name__ == '__main__':
   
